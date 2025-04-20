@@ -8,7 +8,6 @@ from parser.reader import ParserReader
 from typing import Optional
 
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from language.ast.controls.ifexpr import IfExpr
 from tokenizer.grammar import TokenKind
 
@@ -27,7 +26,7 @@ def parse_if_expr(reader: ParserReader) -> IfExpr:
     cond = parse_expr(reader)
     reader.expect(TokenKind.COLON)
     then_branch = parse_block(reader)
-    else_branch: Optional[Statement] = None
+    else_branch: Optional[Expr] = None
     if reader.match(TokenKind.KEYWORD, "else"):
         reader.expect(TokenKind.COLON)
         else_branch = parse_block(reader)

@@ -5,12 +5,11 @@ This module defines the FuncDef class, which represents a function definition in
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from utils.indent import indent
 
 
 @dataclass
-class FuncDef(Statement):
+class FuncDef(Expr):
     """
     Represents a function definition.
 
@@ -22,7 +21,7 @@ class FuncDef(Statement):
 
     name: str
     params: list[str]
-    body: Statement
+    body: Expr
 
     def __str__(self) -> str:
         """

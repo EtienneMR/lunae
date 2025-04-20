@@ -1,18 +1,17 @@
 """
-This module defines the Assign class, which represents an assignment statement in the AST.
+This module defines the Assign class, which represents an assignment expr in the AST.
 """
 
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from utils.indent import indent
 
 
 @dataclass
-class Assign(Statement):
+class Assign(Expr):
     """
-    Represents an assignment statement.
+    Represents an assignment expr.
 
     Attributes:
         name (str): The variable name.

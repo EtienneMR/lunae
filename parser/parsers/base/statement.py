@@ -6,19 +6,19 @@ Statements can include function definitions or expressions.
 from parser.parsers.base.expr import parse_expr
 from parser.reader import ParserReader
 
-from language.ast.base.statement import Statement
+from language.ast.base.expr import Expr
 from tokenizer.grammar import TokenKind
 
 
-def parse_statement(reader: ParserReader) -> Statement:
+def parse_statement(reader: ParserReader) -> Expr:
     """
-    Parses a single statement, which can be a function definition or an expression.
+    Parses a single expr, which can be a function definition or an expression.
 
     Args:
         reader (ParserReader): The parser reader instance.
 
     Returns:
-        Statement: The parsed statement.
+        Expr: The parsed expr.
     """
     from parser.parsers.functions.funcdef import parse_func_def
 

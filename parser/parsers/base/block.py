@@ -9,11 +9,10 @@ from parser.reader import ParserReader
 
 from language.ast.base.block import Block
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from tokenizer.grammar import TokenKind
 
 
-def parse_block(reader: ParserReader) -> Block | Statement:
+def parse_block(reader: ParserReader) -> Block | Expr:
     """
     Parses a block of statements or a single-line expression.
 
@@ -21,11 +20,11 @@ def parse_block(reader: ParserReader) -> Block | Statement:
         reader (ParserReader): The parser reader instance.
 
     Returns:
-        Block | Statement: The parsed block or single statement.
+        Block | Expr: The parsed block or single expr.
     """
     if reader.match(TokenKind.NEWLINE) and reader.is_followed(TokenKind.INDENT):
         reader.expect(TokenKind.INDENT)
-        statements: list[Statement] = []
+        statements: list[Expr] = []
         while not reader.match(TokenKind.DEDENT):
             if reader.match(TokenKind.NEWLINE):
                 continue
@@ -51,7 +50,7 @@ def parse_reader(reader: ParserReader) -> Block:
     Returns:
         Block: The parsed block of statements.
     """
-    statements: list[Statement] = []
+    statements: list[Expr] = []
     while reader.peek():
         if reader.match(TokenKind.NEWLINE):
             continue

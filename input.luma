@@ -1,11 +1,11 @@
 print("== INIT ==")
 
-func add2(a, b):
+func add2(a: FLOAT, b: FLOAT):
     result = a + b
     result
 
 # Custom sub
-func sub(a, b): a + (-b)
+func sub(a: FLOAT, b: FLOAT): a + (-b)
 
 print("== BASIC ==")
 

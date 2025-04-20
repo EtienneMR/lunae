@@ -7,23 +7,10 @@ from parser import parse
 from textwrap import dedent
 
 from interpreter.environement import Environment
-from interpreter.interpreter import Interpreter
+from interpreter.interpreter import Interpreter, create_global_env
 from tokenizer import tokenize
 from utils.errors import SourceError
 from utils.indent import indent
-
-OPERATORS = {
-    "add": lambda a, b: a + b,
-    "sub": lambda a, b: a - b,
-    "mul": lambda a, b: a * b,
-    "div": lambda a, b: a / b,
-    "mod": lambda a, b: a % b,
-    "is": lambda a, b: a == b,
-    "less": lambda a, b: a < b,
-    "more": lambda a, b: a > b,
-    "neg": lambda a: -a,
-    "not": lambda a: not a,
-}
 
 
 class REPL:
@@ -102,7 +89,7 @@ class REPL:
         """
         self.QUIT = True
 
-    def print(*args):
+    def print(self, *args):
         """
         Prints arguments to the console.
         """
@@ -125,7 +112,7 @@ class REPL:
             if target.__doc__:
                 print(indent(dedent(target.__doc__)))
             else:
-                print("No information avaiable :-(")
+                print("No information available :-(")
         else:
             functions = []
             others = []
@@ -147,7 +134,7 @@ class REPL:
         """
         Resets the REPL environment.
         """
-        env = Environment()
+        env = create_global_env()
 
         # REPL
         env.set("load", self.load)
@@ -160,11 +147,9 @@ class REPL:
         env.set("tokenize", tokenize)
         env.set("parse", parse)
 
-        # BUILT-INS
+        # OTHERS
         env.set("print", self.print)
         env.set("range", lambda n: list(range(int(n))))
-        for op, fn in OPERATORS.items():
-            env.set(op, fn)
 
         self.interpreter.global_env = env
 

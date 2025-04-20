@@ -5,7 +5,6 @@ This module defines the ForExpr class, which represents a for-expression in the 
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from utils.indent import indent
 
 
@@ -22,7 +21,7 @@ class ForExpr(Expr):
 
     var: str
     iterable: Expr
-    body: Statement
+    body: Expr
 
     def __str__(self) -> str:
         """

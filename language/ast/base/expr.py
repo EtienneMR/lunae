@@ -4,11 +4,9 @@ This module defines the Expr class.
 
 from dataclasses import dataclass
 
-from language.ast.base.statement import Statement
-
 
 @dataclass
-class Expr(Statement):
+class Expr:
     """
     Base class for all expressions.
     """

@@ -1,8 +1,9 @@
+from parser import parse
 from typing import Any
 
 from interpreter.environement import Environment
 from language.ast.base.block import Block
-from language.ast.base.statement import Statement
+from language.ast.base.expr import Expr
 from language.ast.controls.forexpr import ForExpr
 from language.ast.controls.ifexpr import IfExpr
 from language.ast.controls.whileexpr import WhileExpr
@@ -12,7 +13,30 @@ from language.ast.values.assign import Assign
 from language.ast.values.number import Number
 from language.ast.values.string import String
 from language.ast.values.var import Var
+from tokenizer import tokenize
 from utils.errors import InterpreterError
+
+OPERATORS = {
+    "add": lambda a, b: a + b,
+    "sub": lambda a, b: a - b,
+    "mul": lambda a, b: a * b,
+    "div": lambda a, b: a / b,
+    "mod": lambda a, b: a % b,
+    "is": lambda a, b: a == b,
+    "less": lambda a, b: a < b,
+    "more": lambda a, b: a > b,
+    "neg": lambda a: -a,
+    "not": lambda a: not a,
+}
+
+
+def create_global_env() -> Environment:
+    env = Environment()
+
+    for op, fn in OPERATORS.items():
+        env.set(op, fn)
+
+    return env
 
 
 class Interpreter:
@@ -24,14 +48,29 @@ class Interpreter:
         """
         Initializes the interpreter with a global environment.
         """
-        self.global_env = Environment()
+        self.global_env = create_global_env()
 
-    def eval(self, node: Statement, env: "Environment | None" = None) -> Any:
+    def execute(self, source: str):
+        """
+        Execute the provided source.
+        This method is sugar for interpreter.eval(parser.parse(tokenizer.tokenize(source)))
+
+        Args:
+            source (str): The code to be executed.
+
+        Returns:
+            Any: The result of the execution
+        """
+        tokens = tokenize(source)
+        ast = parse(tokens)
+        return self.eval(ast)
+
+    def eval(self, node: Expr, env: "Environment | None" = None) -> Any:
         """
         Evaluates a given AST node.
 
         Args:
-            node (Statement): The AST node to evaluate.
+            node (Expr): The AST node to evaluate.
             env (Environment | None): The environment to use for evaluation.
 
         Returns:
@@ -201,7 +240,7 @@ class Interpreter:
             env (Environment): The current environment.
 
         Returns:
-            Any: The result of the last statement in the block.
+            Any: The result of the last expr in the block.
         """
         res = None
         for stmt in node.statements:

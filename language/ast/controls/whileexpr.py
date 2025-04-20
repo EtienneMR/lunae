@@ -5,7 +5,6 @@ This module defines the WhileExpr class, which represents a while-expression in 
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from utils.indent import indent
 
 
@@ -20,7 +19,7 @@ class WhileExpr(Expr):
     """
 
     cond: Expr
-    body: Statement
+    body: Expr
 
     def __str__(self):
         return f"WHILE\n{indent(self.cond)}\n{indent(self.body)}"

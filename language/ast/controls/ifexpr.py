@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import Optional
 
 from language.ast.base.expr import Expr
-from language.ast.base.statement import Statement
 from utils.indent import indent
 
 
@@ -22,8 +21,8 @@ class IfExpr(Expr):
     """
 
     cond: Expr
-    then_branch: Statement
-    else_branch: Optional[Statement]
+    then_branch: Expr
+    else_branch: Optional[Expr]
 
     def __str__(self) -> str:
         """
