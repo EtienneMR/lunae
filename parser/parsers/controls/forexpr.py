@@ -1,0 +1,16 @@
+from parser.parsers.base.block import parse_block
+from parser.parsers.base.expr import parse_expr
+from parser.reader import ParserReader
+
+from language.ast.controls.forexpr import ForExpr
+from tokenizer.grammar import TokenKind
+
+
+def parse_for_expr(reader: ParserReader):
+    reader.expect(TokenKind.KEYWORD, "for")
+    var = reader.expect(TokenKind.IDENT).match
+    reader.expect(TokenKind.KEYWORD, "in")
+    iterable = parse_expr(reader)
+    reader.expect(TokenKind.COLON)
+    body = parse_block(reader)
+    return ForExpr(var, iterable, body)

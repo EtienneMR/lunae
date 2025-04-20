@@ -1,0 +1,36 @@
+print("== INIT ==")
+
+func add2(a, b):
+    result = a + b
+    result
+
+# Custom sub
+func sub(a, b): a + (-b)
+
+print("== BASIC ==")
+
+print(add2(1, 2) + 1)
+print(2 - 1)
+
+a = 1
+b = 0
+
+if a:
+    print(!"a")
+else: if b:
+    print("not ok")
+else:
+    print("not ok")
+
+print("== MULTS ==")
+
+for i in range(5): for j in range(5): print(i, j, i*j)
+
+print("== EVEN == ")
+
+while (b<10):
+    b = b + 1
+    a = !a
+    if a: print(b)
+
+b
