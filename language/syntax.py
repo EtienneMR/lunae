@@ -8,6 +8,15 @@ from dataclasses import dataclass
 
 @dataclass
 class Operator:
+    """
+    Represents an operator in the language.
+
+    Attributes:
+        operator (str): The operator symbol.
+        priority (int): The precedence of the operator.
+        function (str): The function name associated with the operator.
+    """
+
     operator: str
     priority: int
     function: str
@@ -18,6 +27,10 @@ class Operator:
 
 
 KEYWORDS = {"if", "else", "for", "in", "while", "func"}
+"""
+set[str]: The reserved keywords in the language.
+"""
+
 BINARY_OPERATORS = Operator.dict(
     [
         ("+", 1, "add"),
@@ -30,9 +43,16 @@ BINARY_OPERATORS = Operator.dict(
         ("<", 0, "less"),
     ]
 )
+"""
+dict[str, Operator]: The binary operators supported by the language.
+"""
+
 UNARY_OPERATORS = Operator.dict(
     [
         ("-", 0, "neg"),
         ("!", 0, "not"),
     ]
 )
+"""
+dict[str, Operator]: The unary operators supported by the language.
+"""

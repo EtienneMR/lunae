@@ -1,3 +1,7 @@
+"""
+This module defines the SourcePosition class, which represents a position in the source code.
+"""
+
 from dataclasses import dataclass
 
 

@@ -27,23 +27,37 @@ class Token:
     end: SourcePosition
 
     @property
-    def value(self) -> str | float:
+    def string_value(self) -> str:
         """
-        Returns the value of the token based on its kind.
+        Returns the string value of the token based on its kind.
 
         Returns:
-            str | float: The value of the token.
+            str: The value of the token.
 
         Raises:
             TokenizerError: If the token kind is unexpected.
         """
         if self.kind == TokenKind.STRING:
             return bytes(self.match[1:-1], "utf-8").decode("unicode_escape")
+
+        raise TokenizerError(
+            f"Unexpected token kind: {self.kind} has no value", self.start, self.end
+        )
+
+    @property
+    def number_value(self) -> float:
+        """
+        Returns the float value of the token based on its kind.
+
+        Returns:
+            float: The value of the token.
+
+        Raises:
+            TokenizerError: If the token kind is unexpected.
+        """
         if self.kind == TokenKind.NUMBER:
             return float(self.match)
 
-        err = TokenizerError(
+        raise TokenizerError(
             f"Unexpected token kind: {self.kind} has no value", self.start, self.end
         )
-        err.add_note(f"Match: {self.match!r}")
-        raise err

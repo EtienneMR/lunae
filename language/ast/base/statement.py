@@ -1,3 +1,7 @@
+"""
+This module defines the Base class.
+"""
+
 from dataclasses import dataclass
 
 

@@ -1,3 +1,4 @@
+from utils.indent import indent
 from utils.SourcePosition import SourcePosition
 
 SOURCE_MARGIN = 5
@@ -10,6 +11,7 @@ class SourceError(Exception):
     Attributes:
         start (SourcePosition | None): The starting position of the error.
         end (SourcePosition | None): The ending position of the error.
+        note (str): Additional context or source code snippet.
     """
 
     def __init__(
@@ -26,6 +28,7 @@ class SourceError(Exception):
             start (SourcePosition | None): The starting position of the error.
             end (SourcePosition | None, optional): The ending position of the error.
         """
+        self.note = ""
         self.start = start
         self.end = (
             end
@@ -83,7 +86,9 @@ class SourceError(Exception):
             length = max(self.start.character_pos, self.end.character_pos) - begin
             lines.append("  " + " " * begin + "^" * length)
 
-            self.add_note("\n".join(f"\t{l}" for l in lines))
+            self.note = "\n".join(lines)
+
+            self.add_note(indent(self.note))
 
 
 class ParserError(SourceError):
@@ -91,20 +96,14 @@ class ParserError(SourceError):
     Represents a parsing error.
     """
 
-    pass
-
 
 class TokenizerError(SourceError):
     """
     Represents a tokenization error.
     """
 
-    pass
-
 
 class InterpreterError(SourceError):
     """
     Represents an interpreter error.
     """
-
-    pass

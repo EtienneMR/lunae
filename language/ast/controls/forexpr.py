@@ -1,3 +1,7 @@
+"""
+This module defines the ForExpr class, which represents a for-expression in the AST.
+"""
+
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr

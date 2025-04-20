@@ -1,3 +1,7 @@
+"""
+This module defines the FuncDef class, which represents a function definition in the AST.
+"""
+
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr

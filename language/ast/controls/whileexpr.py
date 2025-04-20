@@ -1,3 +1,7 @@
+"""
+This module defines the WhileExpr class, which represents a while-expression in the AST.
+"""
+
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr

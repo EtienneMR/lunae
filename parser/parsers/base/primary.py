@@ -1,3 +1,8 @@
+"""
+This module provides functionality for parsing primary expressions.
+Primary expressions include numbers, strings, variables, parenthesized expressions, and control expressions.
+"""
+
 from parser.parsers.base.expr import parse_expr
 from parser.parsers.controls import CONTROL_EXPRESSIONS
 from parser.parsers.values.number import parse_number

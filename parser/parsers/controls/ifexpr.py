@@ -1,3 +1,7 @@
+"""
+This module provides the parser for if-expressions.
+"""
+
 from parser.parsers.base.block import parse_block
 from parser.parsers.base.expr import parse_expr
 from parser.reader import ParserReader
@@ -9,7 +13,16 @@ from language.ast.controls.ifexpr import IfExpr
 from tokenizer.grammar import TokenKind
 
 
-def parse_if_expr(reader: ParserReader):
+def parse_if_expr(reader: ParserReader) -> IfExpr:
+    """
+    Parses an if-expression.
+
+    Args:
+        reader (ParserReader): The parser reader.
+
+    Returns:
+        IfExpr: The parsed if-expression node.
+    """
     reader.expect(TokenKind.KEYWORD, "if")
     cond = parse_expr(reader)
     reader.expect(TokenKind.COLON)

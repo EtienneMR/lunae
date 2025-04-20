@@ -1,3 +1,7 @@
+"""
+This module defines the Assign class, which represents an assignment statement in the AST.
+"""
+
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr

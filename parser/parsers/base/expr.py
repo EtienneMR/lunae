@@ -1,3 +1,8 @@
+"""
+This module provides functionality for parsing expressions.
+Expressions can include assignments or binary operations.
+"""
+
 from parser.reader import ParserReader
 
 from language.ast.base.expr import Expr

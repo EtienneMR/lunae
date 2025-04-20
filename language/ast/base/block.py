@@ -1,3 +1,7 @@
+"""
+This module defines the Block class.
+"""
+
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr

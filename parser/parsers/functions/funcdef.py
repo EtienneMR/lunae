@@ -1,3 +1,7 @@
+"""
+This module provides the parser for function definitions.
+"""
+
 from parser.parsers.base.block import parse_block
 from parser.reader import ParserReader
 
@@ -5,7 +9,16 @@ from language.ast.functions.funcdef import FuncDef
 from tokenizer.grammar import TokenKind
 
 
-def parse_func_def(reader: ParserReader):
+def parse_func_def(reader: ParserReader) -> FuncDef:
+    """
+    Parses a function definition.
+
+    Args:
+        reader (ParserReader): The parser reader.
+
+    Returns:
+        FuncDef: The parsed function definition node.
+    """
     reader.expect(TokenKind.KEYWORD, "func")
     name = reader.expect(TokenKind.IDENT).match
     reader.expect(TokenKind.LPAREN)

@@ -1,3 +1,7 @@
+"""
+This module provides functionality for parsing for expressions.
+"""
+
 from parser.parsers.base.block import parse_block
 from parser.parsers.base.expr import parse_expr
 from parser.reader import ParserReader
@@ -6,7 +10,16 @@ from language.ast.controls.forexpr import ForExpr
 from tokenizer.grammar import TokenKind
 
 
-def parse_for_expr(reader: ParserReader):
+def parse_for_expr(reader: ParserReader) -> ForExpr:
+    """
+    Parses a for expression.
+
+    Args:
+        reader (ParserReader): The parser reader instance.
+
+    Returns:
+        ForExpr: The parsed for expression.
+    """
     reader.expect(TokenKind.KEYWORD, "for")
     var = reader.expect(TokenKind.IDENT).match
     reader.expect(TokenKind.KEYWORD, "in")

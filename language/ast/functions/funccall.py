@@ -1,3 +1,7 @@
+"""
+This module defines the FuncCall class, which represents a function call in the AST.
+"""
+
 from dataclasses import dataclass
 
 from language.ast.base.expr import Expr

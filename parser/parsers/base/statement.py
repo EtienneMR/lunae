@@ -1,3 +1,8 @@
+"""
+This module provides functionality for parsing statements in the language.
+Statements can include function definitions or expressions.
+"""
+
 from parser.parsers.base.expr import parse_expr
 from parser.reader import ParserReader
 
@@ -7,7 +12,10 @@ from tokenizer.grammar import TokenKind
 
 def parse_statement(reader: ParserReader) -> Statement:
     """
-    Parses a single statement.
+    Parses a single statement, which can be a function definition or an expression.
+
+    Args:
+        reader (ParserReader): The parser reader instance.
 
     Returns:
         Statement: The parsed statement.

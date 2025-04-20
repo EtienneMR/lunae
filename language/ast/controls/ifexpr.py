@@ -1,3 +1,7 @@
+"""
+This module defines the IfExpr class, which represents an if-expression in the AST.
+"""
+
 from dataclasses import dataclass
 from typing import Optional
 
