@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "luma"
+description = "A modular interpreter framework."
+license = "MIT"
+authors = [
+    { name = "Etienne_MR", email = "etienne@etiennemr.fr" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.8"
+dynamic = ["version", "readme"]
+
+[project.urls]
+Homepage = "https://github.com/EtienneMR/luma"
+
+[project.scripts]
+luma-repl = "luma.__main__:main"
+
+[tool.setuptools.dynamic]
+version = {file = ["VERSION"]}
+readme = {file = ["README.md"], content-type = "text/markdown"}
+
+[tool.setuptools.packages.find]
+where = ["luma"]
+
+[tool.setuptools.package-data]
+luma = ["py.typed"]

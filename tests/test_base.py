@@ -1,6 +1,7 @@
-def test_add():
-    from interpreter.interpreter import Interpreter
+from luma.interpreter import Interpreter
 
+
+def test_add():
     def add(a, b):
         raise NotImplementedError
 
@@ -35,16 +36,12 @@ add3(1, 2)
 
 
 def test_sub():
-    from interpreter.interpreter import Interpreter
-
     interpreter = Interpreter()
     result = interpreter.execute("func sub(a, b): a + (-b)\nsub(5, 3)")
     assert result == 2
 
 
 def test_if_else():
-    from interpreter.interpreter import Interpreter
-
     interpreter = Interpreter()
     result = interpreter.execute(
         """
@@ -61,8 +58,6 @@ else: "err"
 
 
 def test_nested_loops():
-    from interpreter.interpreter import Interpreter
-
     interpreter = Interpreter()
     interpreter.global_env.set("range", lambda n: list(range(int(n))))
     result = interpreter.execute("for i in range(5): for j in range(5): i * j")
@@ -70,8 +65,6 @@ def test_nested_loops():
 
 
 def test_while_loop():
-    from interpreter.interpreter import Interpreter
-
     interpreter = Interpreter()
     result = interpreter.execute(
         """
