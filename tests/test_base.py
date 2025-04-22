@@ -1,4 +1,4 @@
-from luma.interpreter import Interpreter
+from lunae.interpreter import Interpreter
 
 
 def test_add():

@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "luma"
+name = "lunae"
 description = "A modular interpreter framework."
 license = "MIT"
 authors = [
@@ -17,17 +17,17 @@ requires-python = ">=3.8"
 dynamic = ["version", "readme"]
 
 [project.urls]
-Homepage = "https://github.com/EtienneMR/luma"
+Homepage = "https://github.com/EtienneMR/lunae"
 
 [project.scripts]
-luma-repl = "luma.__main__:main"
+lunae-repl = "lunae.__main__:main"
 
 [tool.setuptools.dynamic]
 version = {file = ["VERSION"]}
 readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
-where = ["luma"]
+where = ["lunae"]
 
 [tool.setuptools.package-data]
-luma = ["py.typed"]
+lunae = ["py.typed"]
