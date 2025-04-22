@@ -1,17 +1,10 @@
 """
-This module provides the core functionality for interpreting and executing
-code written in the Lunae language. It includes the `Interpreter` class,
-which evaluates abstract syntax trees (ASTs) generated from source code,
-and utility functions for creating a global environment and executing code.
-
-The module supports various language constructs such as variables, functions,
-control flow (if, while, for), and basic arithmetic operations. It also
-defines a set of predefined operators available in the global environment.
+The `lunae.interpreter` package provides tools for interpreting parsed data and executing commands.
 """
 
 from typing import Any, Optional
 
-from lunae.interpreter.environement import Environment
+from lunae.interpreter.environment import Environment
 from lunae.language.ast.base.block import Block
 from lunae.language.ast.base.expr import Expr
 from lunae.language.ast.controls.forexpr import ForExpr

@@ -1,5 +1,5 @@
 """
-This module contains the implementation of the TokenizerReader class.
+Handles reading and processing source data for tokenization.
 """
 
 from lunae.tokenizer.grammar import (

@@ -1,6 +1,5 @@
 """
-This module defines the ParserReader class, which provides utilities
-for reading and processing tokens during parsing.
+Handles reading and interpreting tokens for parsing.
 """
 
 from typing import Optional

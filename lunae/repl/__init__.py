@@ -1,5 +1,5 @@
 """
-This module defines the REPL (Read-Eval-Print Loop) for the language.
+The `lunae.repl` module provides an interactive Read-Eval-Print Loop (REPL) for testing and debugging.
 """
 
 import traceback

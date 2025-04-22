@@ -1,0 +1,199 @@
+name: Deploy workflow
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      job_to_run:
+        description: "Specify which job to run: publish or docs"
+        required: false
+        default: all
+
+permissions:
+  contents: write
+  packages: write
+  pull-requests: read
+
+jobs:
+  changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      test: ${{ steps.changes.outputs.test }}
+      build: ${{ steps.changes.outputs.build }}
+      docs: ${{ steps.changes.outputs.docs }}
+      push: ${{ github.event_name == 'push' }}
+      main: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Check changes
+        uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            test:
+              - 'tests/**'
+              - 'lunae/**'
+            build:
+              - 'VERSION'
+            docs:
+              - 'docs/**'
+              - 'lunae/**'
+
+  test:
+    name: Run Tests
+    needs: changes
+    if: needs.changes.outputs.test == 'true' || needs.changes.outputs.build == 'true' || github.event.inputs.job_to_run == 'publish'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install Dependencies
+        run: |
+          pip install pytest
+          pip install -e .
+      - name: Run Tests
+        run: pytest
+
+  build:
+    name: Build Python Distribution
+    runs-on: ubuntu-latest
+    needs:
+      - test
+      - changes
+    if: (needs.changes.outputs.push == 'true' && needs.changes.outputs.build == 'true') || github.event.inputs.job_to_run == 'publish'
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set Up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install Build Tool
+        run: >-
+          python3 -m
+          pip install
+          build
+          --user
+      - name: Build Distribution Packages
+        run: python3 -m build
+      - name: Upload Distribution Packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  publish-to-pypi:
+    name: Publish to PyPI
+    if: needs.changes.outputs.main == 'true'
+    needs:
+      - build
+      - changes
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/lunae
+    permissions:
+      id-token: write # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+      - name: Download Distribution Packages
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  publish-to-testpypi:
+    name: Publish to TestPyPI
+    needs:
+      - build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/lunae
+
+    permissions:
+      id-token: write # IMPORTANT: mandatory for trusted publishing
+
+    steps:
+      - name: Download Distribution Packages
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  release:
+    name: Create GitHub Release
+    needs:
+      - build
+      - changes
+    if: needs.changes.outputs.main == 'true' && (needs.changes.outputs.push == 'true' || github.event.inputs.job_to_run == 'publish')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Read Version from File
+        id: get_version
+        run: |
+          echo "version=$(cat VERSION)" >> $GITHUB_OUTPUT
+
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_version.outputs.version }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          files: "dist/*"
+
+  docs:
+    name: Generate Documentation
+    runs-on: ubuntu-latest
+    if: needs.changes.outputs.main == 'true' && ((needs.changes.outputs.push == 'true' && needs.changes.outputs.docs == 'true') || github.event.inputs.job_to_run == 'docs')
+    needs: changes
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Set Up Python Environment
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install dependencies
+        run: |
+          pip install sphinx pydata_sphinx_theme
+      - name: Install lunae
+        run: |
+          pip install -e .
+      - name: Sphinx build
+        run: |
+          sphinx-build docs/source/ docs/build/
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build/
+          force_orphan: true

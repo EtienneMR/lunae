@@ -1,5 +1,5 @@
 """
-This module initializes the tokenizer package and imports its components.
+The `lunae.tokenizer` package provides tools for tokenizing input data, including grammar definitions, token readers, and token representations.
 """
 
 from lunae.language.syntax import KEYWORDS

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lunae"
-description = "A modular interpreter framework."
+description = "Lunae is a lightweight programming language designed for simplicity and extensibility."
 license = "MIT"
 authors = [
     { name = "Etienne_MR", email = "etienne@etiennemr.fr" }
@@ -27,7 +27,7 @@ version = {file = ["VERSION"]}
 readme = {file = ["README.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
-where = ["lunae"]
+where = ["."]
 
 [tool.setuptools.package-data]
 lunae = ["py.typed"]

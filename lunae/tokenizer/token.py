@@ -1,5 +1,5 @@
 """
-This module defines the Token class and related utilities for tokenization.
+Represents individual tokens and their properties.
 """
 
 from dataclasses import dataclass

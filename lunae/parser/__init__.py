@@ -1,6 +1,5 @@
 """
-This module provides the main parsing functionality for the language.
-It converts tokens into an abstract syntax tree (AST).
+The `lunae.parser` package provides tools for parsing token into an abstract syntax tree (AST).
 """
 
 from lunae.language.ast.base.block import Block
@@ -9,17 +8,17 @@ from lunae.parser.reader import ParserReader
 from lunae.tokenizer import Token
 
 
-def parse(toknes: list[Token]) -> Block:
+def parse(tokens: list[Token]) -> Block:
     """
     Parses a list of tokens into an abstract syntax tree (AST).
 
     Args:
-        toknes (list[Token]): The list of tokens to parse.
+        tokens (list[Token]): The list of tokens to parse.
 
     Returns:
         Block: The root block of the parsed AST.
     """
-    reader = ParserReader(toknes)
+    reader = ParserReader(tokens)
     ast = parse_reader(reader)
     return ast
 
