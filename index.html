@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>lunae &#8212; lunae 0.0.6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=1fd71caa"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lunae.interpreter" href="lunae.interpreter.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">lunae 0.0.6 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.interpreter.html">
+    lunae.interpreter
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.parser.html">
+    lunae.parser package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.repl.html">
+    lunae.repl
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.tokenizer.html">
+    lunae.tokenizer
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.interpreter.html">
+    lunae.interpreter
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.parser.html">
+    lunae.parser package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.repl.html">
+    lunae.repl
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.tokenizer.html">
+    lunae.tokenizer
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="lunae">
+<h1>lunae<a class="headerlink" href="#lunae" title="Link to this heading">#</a></h1>
+<p>Welcome to the <cite>lunae</cite> documentation! This guide provides an overview of the <cite>lunae</cite> language, including its subpackages and modules.</p>
+<section id="module-lunae">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lunae" title="Link to this heading">#</a></h2>
+<section id="the-lunae-package">
+<h3>The <cite>lunae</cite> package<a class="headerlink" href="#the-lunae-package" title="Link to this heading">#</a></h3>
+<p>Lunae is a lightweight programming language designed for simplicity and extensibility.
+It provides tools for tokenizing, parsing, and interpreting input data, enabling users
+to define and execute custom scripts with ease.</p>
+<p>Modules:
+- <cite>tokenizer</cite>: Handles the tokenization of input data.
+- <cite>parser</cite>: Converts tokens into structured representations.
+- <cite>interpreter</cite>: Executes parsed data within a runtime environment.</p>
+<p>Exports:
+- <cite>parse</cite>: Function for parsing input data.
+- <cite>tokenize</cite>: Function for tokenizing input data.
+- <cite>Interpreter</cite>: Class for managing the interpretation process.
+- <cite>execute</cite>: Function for executing parsed scripts.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="lunae.Interpreter">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lunae.</span></span><span class="sig-name descname"><span class="pre">Interpreter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">global_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The main interpreter class that evaluates the abstract syntax tree (AST).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval">
+<span class="sig-name descname"><span class="pre">eval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Expr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a given AST node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>Expr</em>) – The AST node to evaluate.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a><em> | </em><em>None</em>) – The environment to use for evaluation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the evaluation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>InterpreterError</strong> – If the node type is unknown.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_assign">
+<span class="sig-name descname"><span class="pre">eval_assign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Assign</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_assign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_assign" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates an assignment node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>Assign</em>) – The assignment node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value assigned.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_block">
+<span class="sig-name descname"><span class="pre">eval_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Block</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_block"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_block" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a block node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>Block</em>) – The block node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the last expr in the block.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_forexpr">
+<span class="sig-name descname"><span class="pre">eval_forexpr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ForExpr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_forexpr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_forexpr" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a for expression node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>ForExpr</em>) – The for expression node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The results of evaluating the body for each item in the iterable.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_funccall">
+<span class="sig-name descname"><span class="pre">eval_funccall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FuncCall</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_funccall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_funccall" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a function call node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>FuncCall</em>) – The function call node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the function call.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_funcdef">
+<span class="sig-name descname"><span class="pre">eval_funcdef</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FuncDef</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_funcdef"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_funcdef" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a function definition node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>FuncDef</em>) – The function definition node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The defined function.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_ifexpr">
+<span class="sig-name descname"><span class="pre">eval_ifexpr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IfExpr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_ifexpr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_ifexpr" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates an if expression node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>IfExpr</em>) – The if expression node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the evaluation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_number">
+<span class="sig-name descname"><span class="pre">eval_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Number</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_number" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a number node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>Number</em>) – The number node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int | float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_string">
+<span class="sig-name descname"><span class="pre">eval_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">String</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_string" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a string node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>String</em>) – The string node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_var">
+<span class="sig-name descname"><span class="pre">eval_var</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_var"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_var" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a variable node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>Var</em>) – The variable node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the variable.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.eval_whileexpr">
+<span class="sig-name descname"><span class="pre">eval_whileexpr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">WhileExpr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><span class="pre">Environment</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.eval_whileexpr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.eval_whileexpr" title="Link to this definition">#</a></dt>
+<dd><p>Evaluates a while expression node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>WhileExpr</em>) – The while expression node.</p></li>
+<li><p><strong>env</strong> (<a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.environment.Environment" title="lunae.interpreter.environment.Environment"><em>Environment</em></a>) – The current environment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the evaluation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.Interpreter.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/interpreter.html#Interpreter.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.Interpreter.execute" title="Link to this definition">#</a></dt>
+<dd><p>Execute the provided source.
+This method is sugar for interpreter.eval(parser.parse(tokenizer.tokenize(source)))</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> (<em>str</em>) – The code to be executed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the execution</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lunae.execute">
+<span class="sig-prename descclassname"><span class="pre">lunae.</span></span><span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="reference internal" href="_modules/lunae/interpreter.html#execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.execute" title="Link to this definition">#</a></dt>
+<dd><p>Executes the provided source code using the interpreter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> (<em>str</em>) – The source code to execute.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The result of the execution.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Any</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lunae.parse">
+<span class="sig-prename descclassname"><span class="pre">lunae.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tokens</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="lunae.tokenizer.html#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token"><span class="pre">Token</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Block</span></span></span><a class="reference internal" href="_modules/lunae/parser.html#parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.parse" title="Link to this definition">#</a></dt>
+<dd><p>Parses a list of tokens into an abstract syntax tree (AST).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tokens</strong> (<em>list</em><em>[</em><a class="reference internal" href="lunae.tokenizer.html#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token"><em>Token</em></a><em>]</em>) – The list of tokens to parse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The root block of the parsed AST.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Block</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lunae.tokenize">
+<span class="sig-prename descclassname"><span class="pre">lunae.</span></span><span class="sig-name descname"><span class="pre">tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="lunae.tokenizer.html#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token"><span class="pre">Token</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lunae/tokenizer.html#tokenize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenize" title="Link to this definition">#</a></dt>
+<dd><p>Tokenizes the given source code into a list of tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> (<em>str</em>) – The source code as a string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of tokens extracted from the source code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="lunae.tokenizer.html#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token">Token</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lunae.interpreter.html">lunae.interpreter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.Interpreter"><code class="docutils literal notranslate"><span class="pre">Interpreter</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.create_global_env"><code class="docutils literal notranslate"><span class="pre">create_global_env()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.interpreter.html#lunae.interpreter.execute"><code class="docutils literal notranslate"><span class="pre">execute()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.interpreter.html#module-lunae.interpreter.environment">lunae.interpreter.environment module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lunae.parser.html">lunae.parser package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lunae.parser.html#lunae.parser.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.parser.html#module-lunae.parser.reader">lunae.parser.reader</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lunae.repl.html">lunae.repl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lunae.repl.html#lunae.repl.REPL"><code class="docutils literal notranslate"><span class="pre">REPL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lunae.tokenizer.html">lunae.tokenizer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lunae.tokenizer.html#lunae.tokenizer.tokenize"><code class="docutils literal notranslate"><span class="pre">tokenize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.tokenizer.html#module-lunae.tokenizer.grammar">lunae.tokenizer.grammar module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.tokenizer.html#module-lunae.tokenizer.reader">lunae.tokenizer.reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lunae.tokenizer.html#module-lunae.tokenizer.token">lunae.tokenizer.token module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="lunae.interpreter.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">lunae.interpreter</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-lunae">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-lunae-package">The <cite>lunae</cite> package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter"><code class="docutils literal notranslate"><span class="pre">Interpreter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_assign"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_assign()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_block"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_block()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_forexpr"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_forexpr()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_funccall"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_funccall()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_funcdef"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_funcdef()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_ifexpr"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_ifexpr()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_number"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_number()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_string"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_string()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_var"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_var()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.eval_whileexpr"><code class="docutils literal notranslate"><span class="pre">Interpreter.eval_whileexpr()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.Interpreter.execute"><code class="docutils literal notranslate"><span class="pre">Interpreter.execute()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.execute"><code class="docutils literal notranslate"><span class="pre">execute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.parse"><code class="docutils literal notranslate"><span class="pre">parse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenize"><code class="docutils literal notranslate"><span class="pre">tokenize()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#subpackages">Subpackages</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Etienne_MR.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
