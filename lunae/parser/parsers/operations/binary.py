@@ -4,6 +4,7 @@ This module provides functionality for parsing binary operations.
 
 from lunae.language.ast.base.expr import Expr
 from lunae.language.ast.functions.funccall import FuncCall
+from lunae.language.ast.values.var import Var
 from lunae.language.syntax import BINARY_OPERATORS
 from lunae.parser.parsers.operations.unary import parse_unary
 from lunae.parser.reader import ParserReader
@@ -29,7 +30,7 @@ def parse_binary(reader: ParserReader, min_prec: int = 0) -> FuncCall | Expr:
         op = BINARY_OPERATORS[tok.match]
         if op.priority < min_prec:
             break
-        reader.skip()
+        reader.next()
         right = parse_binary(reader, min_prec + 1)
-        left = FuncCall(op.function, [left, right])
+        left = FuncCall(Var(op.function), [left, right])
     return left

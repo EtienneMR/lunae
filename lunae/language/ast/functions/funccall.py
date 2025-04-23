@@ -14,11 +14,11 @@ class FuncCall(Expr):
     Represents a function call.
 
     Attributes:
-        func (str): The function name.
+        callee (Expr): The function name.
         args (list[Expr]): The arguments to the function.
     """
 
-    func: str
+    callee: Expr
     args: list[Expr]
 
     def __str__(self) -> str:
@@ -28,4 +28,4 @@ class FuncCall(Expr):
         Returns:
             str: The string representation of the function call.
         """
-        return f"CALL {self.func!r}\n{'\n'.join(indent(a) for a in self.args)}"
+        return f"CALL\n{indent(self.callee)}\n{'\n'.join(indent(a) for a in self.args)}"

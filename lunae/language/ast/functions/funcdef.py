@@ -3,6 +3,7 @@ This module defines the FuncDef class, which represents a function definition in
 """
 
 from dataclasses import dataclass
+from typing import Optional
 
 from lunae.language.ast.base.expr import Expr
 from lunae.utils.indent import indent
@@ -15,12 +16,12 @@ class FuncDef(Expr):
 
     Attributes:
         name (str): The function name.
-        params (list[str]): The list of parameter names.
+        params (list[tuple[str, str]]): The list of parameter names.
         body (Expr): The body of the function.
     """
 
-    name: str
-    params: list[str]
+    name: Optional[str]
+    params: list[tuple[str, str]]
     body: Expr
 
     def __str__(self) -> str:

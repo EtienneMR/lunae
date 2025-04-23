@@ -2,13 +2,16 @@
 This module provides functionality for parsing variables and function calls.
 """
 
+from ast import Expr
+
+from lunae.language.ast.functions.funccall import FuncCall
 from lunae.language.ast.values.var import Var
 from lunae.parser.parsers.functions.funccall import parse_func_call
 from lunae.parser.reader import ParserReader
 from lunae.tokenizer.grammar import TokenKind
 
 
-def parse_var(reader: ParserReader):
+def parse_var(reader: ParserReader) -> Var | FuncCall:
     """
     Parses a variable or a function call.
 
@@ -20,6 +23,4 @@ def parse_var(reader: ParserReader):
     """
     name = reader.expect(TokenKind.IDENT).match
 
-    if reader.is_followed(TokenKind.LPAREN):
-        return parse_func_call(reader, name)
-    return Var(name)
+    return parse_func_call(reader, Var(name))

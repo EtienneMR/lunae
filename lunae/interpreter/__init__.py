@@ -167,7 +167,7 @@ class Interpreter:
         Returns:
             Any: The result of the function call.
         """
-        fn = env.get(node.func)
+        fn = self.eval(node.callee)
         args = [self.eval(a, env) for a in node.args]
         return fn(*args)
 
@@ -237,7 +237,7 @@ class Interpreter:
 
         def function(*args):
             local = Environment(env)
-            for name, val in zip(node.params, args):
+            for (name, type), val in zip(node.params, args):
                 local.set(name, val)
             return self.eval(node.body, local)
 

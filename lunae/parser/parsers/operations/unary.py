@@ -4,6 +4,7 @@ This module provides functionality for parsing unary operations.
 
 from lunae.language.ast.base.expr import Expr
 from lunae.language.ast.functions.funccall import FuncCall
+from lunae.language.ast.values.var import Var
 from lunae.language.syntax import UNARY_OPERATORS
 from lunae.parser.parsers.base.primary import parse_primary
 from lunae.parser.reader import ParserReader
@@ -23,7 +24,7 @@ def parse_unary(reader: ParserReader) -> FuncCall | Expr:
     tok = reader.peek()
     if tok and tok.kind == TokenKind.OP and tok.match in UNARY_OPERATORS:
         op = UNARY_OPERATORS[tok.match]
-        reader.skip()
+        reader.next()
         operand = parse_unary(reader)
-        return FuncCall(op.function, [operand])
+        return FuncCall(Var(op.function), [operand])
     return parse_primary(reader)

@@ -22,7 +22,7 @@ class ParserReader:
         self.tokens = tokens
         self.pos = 0
 
-    def skip(self):
+    def next(self):
         """
         Advances the reader to the next token.
         """
@@ -69,7 +69,7 @@ class ParserReader:
         """
         tok = self.peek()
         if tok and tok.kind == kind and (value is None or tok.match == value):
-            self.skip()
+            self.next()
             return tok
         return None
 

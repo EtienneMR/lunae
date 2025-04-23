@@ -19,12 +19,20 @@ def parse_func_def(reader: ParserReader) -> FuncDef:
         FuncDef: The parsed function definition node.
     """
     reader.expect(TokenKind.KEYWORD, "func")
-    name = reader.expect(TokenKind.IDENT).match
+    name_token = reader.match(TokenKind.IDENT)
+    name = name_token.match if name_token else None
     reader.expect(TokenKind.LPAREN)
-    params: list[str] = []
+    params: list[tuple[str, str]] = []
     if not reader.match(TokenKind.RPAREN):
         while True:
-            params.append(reader.expect(TokenKind.IDENT).match)
+            param_name = reader.expect(TokenKind.IDENT).match
+            if reader.match(TokenKind.COLON):
+                param_type = reader.expect(TokenKind.IDENT).match
+            else:
+                param_type = "ANY"
+
+            params.append((param_name, param_type))
+
             if reader.match(TokenKind.RPAREN):
                 break
             reader.expect(TokenKind.COMMA)

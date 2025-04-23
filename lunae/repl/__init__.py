@@ -21,11 +21,11 @@ def get_version() -> str:
     try:
         return version("lunae")
     except PackageNotFoundError:
-        version_file_path = path.join(path.dirname(__file__), "..", "..", "VERSION")
-        if path.exists(version_file_path):
+        try:
+            version_file_path = path.join(path.dirname(__file__), "..", "..", "VERSION")
             with open(version_file_path, encoding="utf-8") as f:
                 return f.read().strip()
-        else:
+        except FileNotFoundError:
             return "unknown"
 
 
@@ -38,14 +38,18 @@ class REPL:
         """
         Initializes the REPL.
         """
+        dev = path.isdir(".git")
+
         self.interpreter = Interpreter()
         self.lines = []
-        self.debuging = False
+        self.debuging = dev
         self.quiting = False
 
         self.reset()
 
-        print(f"LUNAE {get_version()} - REPL")
+        v = get_version() + "-dev" if dev else ""
+
+        print(f"LUNAE {v} - REPL")
         print('Type "help()" for more information')
 
     def eval(self, source: str):
@@ -172,10 +176,13 @@ class REPL:
         """
         while not self.quiting:
             inp = input("... " if self.lines else ">>> ")
-            if inp:
-                self.lines.append(inp)
+            is_first_inp = not self.lines
 
-            if not inp or (len(self.lines) == 1 and inp[-1] != ":"):
+            self.lines.append(inp)
+
+            should_eval = inp and not inp.endswith(":") if is_first_inp else not inp
+
+            if should_eval:
                 self.eval("\n".join(self.lines))
                 self.lines.clear()
 

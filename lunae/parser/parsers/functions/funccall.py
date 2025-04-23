@@ -4,31 +4,32 @@ This module provides functionality for parsing function calls.
 
 from lunae.language.ast.base.expr import Expr
 from lunae.language.ast.functions.funccall import FuncCall
+from lunae.language.ast.values.var import Var
 from lunae.parser.parsers.base.expr import parse_expr
 from lunae.parser.reader import ParserReader
 from lunae.tokenizer.grammar import TokenKind
 
+Callee = Var | FuncCall
 
-def parse_func_call(reader: ParserReader, name: str) -> FuncCall:
+
+def parse_func_call(reader: ParserReader, callee: Callee) -> Callee:
     """
-    Parses a function call.
+    Parses function calls after a callee.
 
     Args:
         reader (ParserReader): The parser reader instance.
-        name (str): The name of the function being called.
+        callee (Var | FuncCall): The name of the function being called.
 
     Returns:
-        FuncCall: The parsed function call.
+        Var | FuncCall: The parsed function call.
     """
-    reader.expect(TokenKind.LPAREN)
-
-    args: list[Expr] = []
-
-    if not reader.match(TokenKind.RPAREN):
-        while True:
+    while reader.match(TokenKind.LPAREN):
+        args = []
+        if not reader.is_followed(TokenKind.RPAREN):
             args.append(parse_expr(reader))
-            if reader.match(TokenKind.RPAREN):
-                break
-            reader.expect(TokenKind.COMMA)
+            while reader.match(TokenKind.COMMA):
+                args.append(parse_expr(reader))
+        reader.expect(TokenKind.RPAREN)
+        callee = FuncCall(callee, args)
 
-    return FuncCall(name, args)
+    return callee
