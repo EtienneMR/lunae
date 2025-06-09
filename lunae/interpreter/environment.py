@@ -2,65 +2,52 @@
 This module defines the Environment class used for managing variable scopes and bindings.
 """
 
-from typing import Any, Optional
+from dataclasses import dataclass
+from typing import Any, Dict, Optional
 
+from lunae.language.typesystem import Type
 from lunae.utils.errors import InterpreterError
 
 
+@dataclass(frozen=True)
+class Cell:
+    value: Any
+    type: Type
+
+
+@dataclass
+class Binding:
+    cell: Cell
+    mutable: bool = True
+
+
 class Environment:
-    """
-    Represents a variable environment for the interpreter.
-
-    Attributes:
-        vars (dict[str, Any]): A dictionary storing variable names and their values.
-        parent (Optional[Environment]): The parent environment, if any.
-    """
-
-    def __init__(self, parent: "Optional[Environment]" = None):
-        """
-        Initializes a new Environment.
-
-        Args:
-            parent (Optional[Environment]): The parent environment, if any.
-        """
-        self.vars: dict[str, Any] = {}
+    def __init__(self, parent: Optional["Environment"] = None):
         self.parent = parent
+        self.bindings: Dict[str, Binding] = {}
 
-    def get(self, name):
-        """
-        Retrieves the value of a variable.
+    def define(self, name: str, binding: Binding) -> None:
+        """Introduce a new name in this scope."""
+        if name in self.bindings:
+            raise NameError(f"Name '{name}' already defined in this scope")
+        self.bindings[name] = binding
 
-        Args:
-            name (str): The name of the variable.
+    def resolve(self, name: str) -> Binding:
+        """Retrieve a binding from it's name, walking up scopes."""
+        env: Optional[Environment] = self
+        while env:
+            if name in env.bindings:
+                return env.bindings[name]
+            env = env.parent
+        raise NameError(f"Name '{name}' is not defined")
 
-        Returns:
-            Any: The value of the variable.
+    def set(self, name: str, cell: Cell) -> None:
+        """Assign to an existing binding, walking up scopes."""
+        binding = self.resolve(name)
+        if not binding.mutable:
+            raise TypeError(f"Cannot assign to immutable '{name}'")
+        binding.cell = cell
 
-        Raises:
-            InterpreterError: If the variable is not defined.
-        """
-        if name in self.vars:
-            return self.vars[name]
-        if self.parent:
-            return self.parent.get(name)
-        raise InterpreterError(f"Undefined variable '{name}'", None)
-
-    def set(self, name, value):
-        """
-        Updates or creates a variable in the current environment.
-
-        Args:
-            name (str): The name of the variable.
-            value (Any): The value to assign to the variable.
-        """
-        self.vars[name] = value
-
-    def define(self, name, value):
-        """
-        Defines a new variable in the current environment.
-
-        Args:
-            name (str): The name of the variable.
-            value (Any): The value to assign to the variable.
-        """
-        self.vars[name] = value
+    def get(self, name: str) -> Cell:
+        """Retrieve a binding’s cell, walking up scopes."""
+        return self.resolve(name).cell

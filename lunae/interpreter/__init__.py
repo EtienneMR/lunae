@@ -4,7 +4,7 @@ The `lunae.interpreter` package provides tools for interpreting parsed data and 
 
 from typing import Any, Optional
 
-from lunae.interpreter.environment import Environment
+from lunae.interpreter.environment import Binding, Environment
 from lunae.language.ast.base.block import Block
 from lunae.language.ast.base.expr import Expr
 from lunae.language.ast.controls.forexpr import ForExpr
@@ -16,6 +16,7 @@ from lunae.language.ast.values.assign import Assign
 from lunae.language.ast.values.number import Number
 from lunae.language.ast.values.string import String
 from lunae.language.ast.values.var import Var
+from lunae.language.typesystem import Type
 from lunae.parser import parse
 from lunae.tokenizer import tokenize
 from lunae.utils.errors import InterpreterError
@@ -44,7 +45,7 @@ def create_global_env() -> Environment:
     env = Environment()
 
     for op, fn in OPERATORS.items():
-        env.set(op, fn)
+        env.define(op, Binding(fn, Type("FUNCTION"), False))
 
     return env
 
@@ -241,7 +242,8 @@ class Interpreter:
                 local.set(name, val)
             return self.eval(node.body, local)
 
-        env.set(node.name, function)
+        if node.name:
+            env.define(node.name, Binding(function, Type("FUNCTION"), False))
         return function
 
     def eval_block(self, node: Block, env: Environment):

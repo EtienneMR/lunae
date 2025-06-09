@@ -85,21 +85,25 @@ class Type:
         return hash((self.name, self.parameters, self.supertype))
 
 
-if __name__ == "__main__":
-    any_t = Type("any")
-    float_t = Type("float", supertype=any_t)
-    int_t = Type("int", supertype=float_t)
-    bool_t = Type("bool", supertype=int_t)
+# Define default types
+ANY = Type("any")
+NONE = Type("none", supertype=ANY)
 
-    list_t = Type("list", ((any_t, Variance.COVARIANT),), supertype=any_t)
-    set_t = Type("set", ((any_t, Variance.COVARIANT),), supertype=any_t)
-    dict_t = Type(
-        "dict",
-        ((any_t, Variance.COVARIANT), (any_t, Variance.COVARIANT)),
-        supertype=any_t,
-    )
+STRING = Type("string", supertype=ANY)
+FLOAT = Type("float", supertype=ANY)
+INT = Type("int", supertype=FLOAT)
+BOOL = Type("bool", supertype=ANY)
 
-    int_list_t = list_t[int_t]
+# Define generic types
+LIST = Type("list", parameters=((ANY, Variance.COVARIANT),), supertype=ANY)
+DICT = Type(
+    "dict",
+    parameters=((ANY, Variance.INVARIANT), (ANY, Variance.INVARIANT)),
+    supertype=ANY,
+)
+SET = Type("set", parameters=((ANY, Variance.COVARIANT),), supertype=ANY)
 
-    assert int_t.is_subtype_of(any_t)
-    assert int_list_t.is_subtype_of(list_t)
+OPTIONAL = Type("optional", parameters=((ANY, Variance.COVARIANT),), supertype=ANY)
+
+# Define function type
+FUNCTION = Type("function", supertype=ANY)

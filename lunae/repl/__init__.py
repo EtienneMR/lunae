@@ -154,19 +154,19 @@ class REPL:
         env = create_global_env()
 
         # REPL
-        env.set("load", self.load)
-        env.set("quit", self.quit)
-        env.set("debug", self.debug)
-        env.set("reset", self.reset)
-        env.set("help", self.help)
+        env.define("load", self.load)
+        env.define("quit", self.quit)
+        env.define("debug", self.debug)
+        env.define("reset", self.reset)
+        env.define("help", self.help)
 
         # DEBUG
-        env.set("tokenize", tokenize)
-        env.set("parse", parse)
+        env.define("tokenize", tokenize)
+        env.define("parse", parse)
 
         # OTHERS
-        env.set("print", self.print)
-        env.set("range", lambda n: list(range(int(n))))
+        env.define("print", self.print)
+        env.define("range", lambda n: list(range(int(n))))
 
         self.interpreter.global_env = env
 
