@@ -1,0 +1,895 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>lunae.tokenizer &#8212; lunae 0.0.6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=1fd71caa"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lunae.tokenizer';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="lunae.repl" href="lunae.repl.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">lunae 0.0.6 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.interpreter.html">
+    lunae.interpreter
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.parser.html">
+    lunae.parser package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.repl.html">
+    lunae.repl
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    lunae.tokenizer
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.interpreter.html">
+    lunae.interpreter
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.parser.html">
+    lunae.parser package
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="lunae.repl.html">
+    lunae.repl
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    lunae.tokenizer
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">lunae.tokenizer</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-lunae.tokenizer">
+<span id="lunae-tokenizer"></span><h1>lunae.tokenizer<a class="headerlink" href="#module-lunae.tokenizer" title="Link to this heading">#</a></h1>
+<p>The <cite>lunae.tokenizer</cite> package provides tools for tokenizing input data, including grammar definitions, token readers, and token representations.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="lunae.tokenizer.tokenize">
+<span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.</span></span><span class="sig-name descname"><span class="pre">tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token"><span class="pre">Token</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/lunae/tokenizer.html#tokenize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenizer.tokenize" title="Link to this definition">#</a></dt>
+<dd><p>Tokenizes the given source code into a list of tokens.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> (<em>str</em>) – The source code as a string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of tokens extracted from the source code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token">Token</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="module-lunae.tokenizer.grammar">
+<span id="lunae-tokenizer-grammar-module"></span><h2>lunae.tokenizer.grammar module<a class="headerlink" href="#module-lunae.tokenizer.grammar" title="Link to this heading">#</a></h2>
+<p>Defines the grammar and token types for the tokenizer.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TOKEN_TYPES">
+<span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.grammar.</span></span><span class="sig-name descname"><span class="pre">TOKEN_TYPES</span></span><a class="headerlink" href="#lunae.tokenizer.grammar.TOKEN_TYPES" title="Link to this definition">#</a></dt>
+<dd><p>A list of token types and their regex patterns.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.COMPILED_TOKEN_REGEX">
+<span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.grammar.</span></span><span class="sig-name descname"><span class="pre">COMPILED_TOKEN_REGEX</span></span><a class="headerlink" href="#lunae.tokenizer.grammar.COMPILED_TOKEN_REGEX" title="Link to this definition">#</a></dt>
+<dd><p>A compiled regex pattern for all token types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>re.Pattern</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.COMILED_INDENT_REGEX">
+<span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.grammar.</span></span><span class="sig-name descname"><span class="pre">COMILED_INDENT_REGEX</span></span><a class="headerlink" href="#lunae.tokenizer.grammar.COMILED_INDENT_REGEX" title="Link to this definition">#</a></dt>
+<dd><p>A compiled regex pattern for indentation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>re.Pattern</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.grammar.</span></span><span class="sig-name descname"><span class="pre">TokenKind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/tokenizer/grammar.html#TokenKind"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Represents the different kinds of tokens used in the tokenizer.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.ASSIGN">
+<span class="sig-name descname"><span class="pre">ASSIGN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'='</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.ASSIGN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.COLON">
+<span class="sig-name descname"><span class="pre">COLON</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">':'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.COLON" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.COMMA">
+<span class="sig-name descname"><span class="pre">COMMA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">','</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.COMMA" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.COMMENT">
+<span class="sig-name descname"><span class="pre">COMMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#.*'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.COMMENT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.DEDENT">
+<span class="sig-name descname"><span class="pre">DEDENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.DEDENT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.IDENT">
+<span class="sig-name descname"><span class="pre">IDENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'[a-zA-Z_][a-zA-Z0-9_]*'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.IDENT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.INDENT">
+<span class="sig-name descname"><span class="pre">INDENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.INDENT" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.KEYWORD">
+<span class="sig-name descname"><span class="pre">KEYWORD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.KEYWORD" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.LBRACK">
+<span class="sig-name descname"><span class="pre">LBRACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\['</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.LBRACK" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.LPAREN">
+<span class="sig-name descname"><span class="pre">LPAREN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\('</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.LPAREN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.NEWLINE">
+<span class="sig-name descname"><span class="pre">NEWLINE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\n'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.NEWLINE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.NUMBER">
+<span class="sig-name descname"><span class="pre">NUMBER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\d+(\\.\\d+)?'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.NUMBER" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.OP">
+<span class="sig-name descname"><span class="pre">OP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'(&gt;|&lt;|%|\\*|\\+|/|!|\\-|==)'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.OP" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.RBRACK">
+<span class="sig-name descname"><span class="pre">RBRACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\]'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.RBRACK" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.RPAREN">
+<span class="sig-name descname"><span class="pre">RPAREN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\\)'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.RPAREN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.STRING">
+<span class="sig-name descname"><span class="pre">STRING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&quot;(\\\\.|[^&quot;\\\\])*&quot;'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.STRING" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.UNKNOWN">
+<span class="sig-name descname"><span class="pre">UNKNOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'.'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.UNKNOWN" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.grammar.TokenKind.WHITESPACE">
+<span class="sig-name descname"><span class="pre">WHITESPACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'[</span> <span class="pre">\\t]+'</span></em><a class="headerlink" href="#lunae.tokenizer.grammar.TokenKind.WHITESPACE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-lunae.tokenizer.reader">
+<span id="lunae-tokenizer-reader-module"></span><h2>lunae.tokenizer.reader module<a class="headerlink" href="#module-lunae.tokenizer.reader" title="Link to this heading">#</a></h2>
+<p>Handles reading and processing source data for tokenization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.reader.</span></span><span class="sig-name descname"><span class="pre">TokenizerReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/tokenizer/reader.html#TokenizerReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class responsible for reading and processing tokens.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.character_pos">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">character_pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.character_pos" title="Link to this definition">#</a></dt>
+<dd><p>Gets the current character position in the line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The current character position.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.end">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SourcePosition</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.end" title="Link to this definition">#</a></dt>
+<dd><p>Gets the end position of the current token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The end position.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>SourcePosition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.is_end_of_file">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_end_of_file</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.is_end_of_file" title="Link to this definition">#</a></dt>
+<dd><p>Checks if the current position is at the end of the file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if at the end of the file, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.is_end_of_line">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_end_of_line</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.is_end_of_line" title="Link to this definition">#</a></dt>
+<dd><p>Checks if the current position is at the end of the line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if at the end of the line, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.is_new_line">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_new_line</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.is_new_line" title="Link to this definition">#</a></dt>
+<dd><p>Checks if the current position is the start of a new line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if at the start of a new line, False otherwise.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.line_end_pos">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">line_end_pos</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.line_end_pos" title="Link to this definition">#</a></dt>
+<dd><p>Gets the position of the end of the current line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The position of the end of the current line.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.read_indentation">
+<span class="sig-name descname"><span class="pre">read_indentation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token"><span class="pre">Token</span></a></span></span><a class="reference internal" href="_modules/lunae/tokenizer/reader.html#TokenizerReader.read_indentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.read_indentation" title="Link to this definition">#</a></dt>
+<dd><p>Reads the indentation token from the source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The indentation token.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token">Token</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.read_token">
+<span class="sig-name descname"><span class="pre">read_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token"><span class="pre">Token</span></a></span></span><a class="reference internal" href="_modules/lunae/tokenizer/reader.html#TokenizerReader.read_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.read_token" title="Link to this definition">#</a></dt>
+<dd><p>Reads the next token from the source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The next token.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#lunae.tokenizer.token.Token" title="lunae.tokenizer.token.Token">Token</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.reader.TokenizerReader.start">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SourcePosition</span></em><a class="headerlink" href="#lunae.tokenizer.reader.TokenizerReader.start" title="Link to this definition">#</a></dt>
+<dd><p>Gets the start position of the current token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The start position.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>SourcePosition</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-lunae.tokenizer.token">
+<span id="lunae-tokenizer-token-module"></span><h2>lunae.tokenizer.token module<a class="headerlink" href="#module-lunae.tokenizer.token" title="Link to this heading">#</a></h2>
+<p>Represents individual tokens and their properties.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lunae.tokenizer.token.</span></span><span class="sig-name descname"><span class="pre">Token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#lunae.tokenizer.grammar.TokenKind" title="lunae.tokenizer.grammar.TokenKind"><span class="pre">TokenKind</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">match</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SourcePosition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SourcePosition</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lunae/tokenizer/token.html#Token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lunae.tokenizer.token.Token" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents a token in the source code.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token.kind">
+<span class="sig-name descname"><span class="pre">kind</span></span><a class="headerlink" href="#lunae.tokenizer.token.Token.kind" title="Link to this definition">#</a></dt>
+<dd><p>The type of the token (e.g., “NUMBER”, “STRING”).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token.match">
+<span class="sig-name descname"><span class="pre">match</span></span><a class="headerlink" href="#lunae.tokenizer.token.Token.match" title="Link to this definition">#</a></dt>
+<dd><p>The matched string for the token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token.start">
+<span class="sig-name descname"><span class="pre">start</span></span><a class="headerlink" href="#lunae.tokenizer.token.Token.start" title="Link to this definition">#</a></dt>
+<dd><p>The starting position of the token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SourcePosition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token.end">
+<span class="sig-name descname"><span class="pre">end</span></span><a class="headerlink" href="#lunae.tokenizer.token.Token.end" title="Link to this definition">#</a></dt>
+<dd><p>The ending position of the token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SourcePosition</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SourcePosition</span></em><a class="headerlink" href="#id0" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">kind</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#lunae.tokenizer.grammar.TokenKind" title="lunae.tokenizer.grammar.TokenKind"><span class="pre">TokenKind</span></a></em><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">match</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id2" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token.number_value">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">number_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#lunae.tokenizer.token.Token.number_value" title="Link to this definition">#</a></dt>
+<dd><p>Returns the float value of the token based on its kind.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of the token.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TokenizerError</strong> – If the token kind is unexpected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">SourcePosition</span></em><a class="headerlink" href="#id3" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="lunae.tokenizer.token.Token.string_value">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">string_value</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#lunae.tokenizer.token.Token.string_value" title="Link to this definition">#</a></dt>
+<dd><p>Returns the string value of the token based on its kind.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of the token.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>TokenizerError</strong> – If the token kind is unexpected.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lunae.repl.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">lunae.repl</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.tokenize"><code class="docutils literal notranslate"><span class="pre">tokenize()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-lunae.tokenizer.grammar">lunae.tokenizer.grammar module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TOKEN_TYPES"><code class="docutils literal notranslate"><span class="pre">TOKEN_TYPES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.COMPILED_TOKEN_REGEX"><code class="docutils literal notranslate"><span class="pre">COMPILED_TOKEN_REGEX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.COMILED_INDENT_REGEX"><code class="docutils literal notranslate"><span class="pre">COMILED_INDENT_REGEX</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind"><code class="docutils literal notranslate"><span class="pre">TokenKind</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.ASSIGN"><code class="docutils literal notranslate"><span class="pre">TokenKind.ASSIGN</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.COLON"><code class="docutils literal notranslate"><span class="pre">TokenKind.COLON</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.COMMA"><code class="docutils literal notranslate"><span class="pre">TokenKind.COMMA</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.COMMENT"><code class="docutils literal notranslate"><span class="pre">TokenKind.COMMENT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.DEDENT"><code class="docutils literal notranslate"><span class="pre">TokenKind.DEDENT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.IDENT"><code class="docutils literal notranslate"><span class="pre">TokenKind.IDENT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.INDENT"><code class="docutils literal notranslate"><span class="pre">TokenKind.INDENT</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.KEYWORD"><code class="docutils literal notranslate"><span class="pre">TokenKind.KEYWORD</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.LBRACK"><code class="docutils literal notranslate"><span class="pre">TokenKind.LBRACK</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.LPAREN"><code class="docutils literal notranslate"><span class="pre">TokenKind.LPAREN</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.NEWLINE"><code class="docutils literal notranslate"><span class="pre">TokenKind.NEWLINE</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.NUMBER"><code class="docutils literal notranslate"><span class="pre">TokenKind.NUMBER</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.OP"><code class="docutils literal notranslate"><span class="pre">TokenKind.OP</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.RBRACK"><code class="docutils literal notranslate"><span class="pre">TokenKind.RBRACK</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.RPAREN"><code class="docutils literal notranslate"><span class="pre">TokenKind.RPAREN</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.STRING"><code class="docutils literal notranslate"><span class="pre">TokenKind.STRING</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.UNKNOWN"><code class="docutils literal notranslate"><span class="pre">TokenKind.UNKNOWN</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.grammar.TokenKind.WHITESPACE"><code class="docutils literal notranslate"><span class="pre">TokenKind.WHITESPACE</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-lunae.tokenizer.reader">lunae.tokenizer.reader module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader"><code class="docutils literal notranslate"><span class="pre">TokenizerReader</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.character_pos"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.character_pos</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.end"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.end</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.is_end_of_file"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.is_end_of_file</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.is_end_of_line"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.is_end_of_line</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.is_new_line"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.is_new_line</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.line_end_pos"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.line_end_pos</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.read_indentation"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.read_indentation()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.read_token"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.read_token()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.reader.TokenizerReader.start"><code class="docutils literal notranslate"><span class="pre">TokenizerReader.start</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-lunae.tokenizer.token">lunae.tokenizer.token module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token"><code class="docutils literal notranslate"><span class="pre">Token</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token.kind"><code class="docutils literal notranslate"><span class="pre">Token.kind</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token.match"><code class="docutils literal notranslate"><span class="pre">Token.match</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token.start"><code class="docutils literal notranslate"><span class="pre">Token.start</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token.end"><code class="docutils literal notranslate"><span class="pre">Token.end</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">Token.end</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">Token.kind</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">Token.match</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token.number_value"><code class="docutils literal notranslate"><span class="pre">Token.number_value</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3"><code class="docutils literal notranslate"><span class="pre">Token.start</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lunae.tokenizer.token.Token.string_value"><code class="docutils literal notranslate"><span class="pre">Token.string_value</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, Etienne_MR.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
